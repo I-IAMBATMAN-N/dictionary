@@ -7,7 +7,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-family: "Montserrat", sans-serif;
 
   height: auto;
@@ -28,8 +28,8 @@ body {
 
   position: fixed;
 
-  background-image: url(assets/nathan-anderson-kujXUuh1X0o-unsplash.jpg);
   background-image: url(assets/lok-yiu-cheung-o6k0ZH1eOwg-unsplash.jpg);
+  background-image: url(assets/nathan-anderson-kujXUuh1X0o-unsplash.jpg);
 
   background-size: cover;
   background-repeat: no-repeat;
