@@ -130,7 +130,7 @@ body {
   background-color: rgba(0, 0, 0, 0);
 }
 .btn {
-  flex: 0 0 10%;
+  flex: 1 0 0;
 
   background-color: white;
   background-color: rgba(0, 0, 0, 0);
@@ -288,10 +288,7 @@ body {
     color: #e6e6e6;
   }
   .input {
-    flex: 0 0 80%;
-  }
-  .btn {
-    flex: 1 0 0;
+    flex: 0 0 70%;
   }
 }
 @media (max-width: 48em) {
