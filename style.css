@@ -266,12 +266,12 @@ body {
     font-size: 46%;
   }
   .upper img {
-    width: 40%;
+    width: 50%;
   }
   .logo {
-    top: 11rem;
+    top: 8rem;
     left: 0.2rem;
-    transform: translate(-1.2rem, 0) rotate(90deg);
+    transform: translate(-3.7rem, 0) rotate(90deg);
 
     color: #e6e6e6;
   }
