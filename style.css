@@ -244,6 +244,7 @@ body {
   text-transform: capitalize;
 }
 .footer {
+  padding: 1.2rem;
   margin-top: 6, 4rem;
 
   font-size: 1.2rem;
@@ -290,10 +291,6 @@ body {
 @media (max-width: 48em) {
   html {
     font-size: 40%;
-  }
-  .upper {
-    min-height: 250px;
-    height: 250px;
   }
   .upper-container {
     justify-content: center;
