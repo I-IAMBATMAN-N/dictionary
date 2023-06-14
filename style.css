@@ -116,7 +116,7 @@ body {
   /* border-bottom: 0.1rem solid rgba(255, 255, 255, 0.5); */
 }
 .input {
-  flex: 0 0 90%;
+  flex: 10 0;
 
   font-size: 3.2rem;
 
@@ -288,7 +288,10 @@ body {
     color: #e6e6e6;
   }
   .input {
-    flex: 0 0 70%;
+    text-align: center;
+  }
+  .btn {
+    display: none;
   }
 }
 @media (max-width: 48em) {
