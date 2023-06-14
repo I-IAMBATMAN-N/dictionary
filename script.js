@@ -142,7 +142,11 @@ function fillLower(object) {
       element2.classList.add("list");
       arr.forEach((item) => {
         element2.innerHTML += `
-        <li class="list-item">${item.definition}</li>
+        <li class="list-item">
+          <span>
+            <ion-icon name="caret-forward-outline"></ion-icon>
+          </span> ${item.definition}
+        </li>
       `;
       });
       // console.log(element2.innerHTML);
@@ -188,6 +192,8 @@ mainBtn.addEventListener("click", function () {
     .then((data) => {
       const [finalData] = data;
 
+      console.log(finalData);
+
       fillUpper(finalData);
       fillLower(finalData);
       console.log(fillLower(finalData));
@@ -195,7 +201,7 @@ mainBtn.addEventListener("click", function () {
     .catch((err) => {
       console.log(err);
 
-      prunounce.innerText = `/${input.value}/`;
+      prunounce.innerText = `/${input.value}`;
 
       let element = `<h3 class="synonym">
       No such word in dictionary

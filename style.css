@@ -12,7 +12,7 @@ body {
 
   height: auto;
 
-  background-color: #191919;
+  background-color: #070013;
   color: #e6e6e6;
 }
 /* .main-section {
@@ -27,11 +27,11 @@ body {
 }
 .upper {
   min-height: 400px;
-  height: 400px;
+  height: 500px;
 
   position: fixed;
 
-  background-image: url(assets/lok-yiu-cheung-o6k0ZH1eOwg-unsplash.jpg);
+  /* background-image: url(assets/lok-yiu-cheung-o6k0ZH1eOwg-unsplash.jpg); */
   background-image: url(assets/nathan-anderson-kujXUuh1X0o-unsplash.jpg);
 
   background-size: cover;
@@ -69,7 +69,7 @@ body {
 
   position: absolute;
 
-  bottom: 20px;
+  bottom: 5rem;
   left: 50%;
 
   transform: translate(-50%, 0);
@@ -82,7 +82,7 @@ body {
   /* border-top-left-radius: 2rem;
   border-top-right-radius: 2rem; */
 
-  border-bottom: 0.1rem solid#e6e6e6;
+  border-bottom: 0.1rem solid rgba(255, 255, 255, 0.5);
 }
 .input {
   flex: 0 0 90%;
@@ -172,27 +172,57 @@ body {
   margin: 0 auto;
 
   padding: 6.4rem 4.8rem;
-  padding-top: 500px;
+  padding-top: 575px;
+
+  overflow: hidden;
 }
 .audio {
   display: none;
 }
 .list {
+  list-style: none;
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
 
   padding-left: 2.4rem;
+
+  border-left: 0.1rem solid rgba(255, 255, 255, 0.5);
+  padding-left: 1.2rem;
 }
 .list-item {
   padding: 0;
   gap: 1.2rem;
+
+  display: flex;
 }
 .partOfSpeech {
   margin: 3.2rem 0;
 
   font-size: 3.2rem;
+
+  position: relative;
+
+  z-index: 1;
+
+  text-transform: capitalize;
 }
+/* .partOfSpeech::after {
+  content: "";
+  display: inline-block;
+
+  width: 100%;
+  height: 0.1rem;
+
+  top: 50%;
+
+  transform: translate(2rem, 50%);
+  position: absolute;
+
+  background-color: rgba(255, 255, 255, 0.5);
+
+  z-index: 0;
+} */
 .synonym {
   margin-bottom: 2rem;
 }
@@ -201,7 +231,6 @@ body {
 
   color: #e6e6e6;
 }
-
 @media (max-width: 55em) {
   html {
     font-size: 46%;
