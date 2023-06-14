@@ -188,7 +188,7 @@ body {
   overflow: hidden;
 
   padding: 0 8rem;
-  padding-bottom: 8rem;
+  padding-bottom: 12.8rem;
 }
 .word-section {
   padding-top: 4.8rem;
@@ -278,7 +278,7 @@ body {
   }
   .lower {
     padding: 0 6.4rem;
-    padding-bottom: 8rem;
+    padding-bottom: 12.8rem;
   }
   .input {
     text-align: center;
