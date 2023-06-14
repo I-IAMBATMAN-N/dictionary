@@ -287,6 +287,12 @@ body {
 
     color: #e6e6e6;
   }
+  .input {
+    flex: 0 0 80%;
+  }
+  .btn {
+    flex: 1 0 0;
+  }
 }
 @media (max-width: 48em) {
   html {
