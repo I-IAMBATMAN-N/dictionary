@@ -64,8 +64,12 @@ body {
   gap: 4.6rem;
 }
 .word {
-  font-size: 9.8rem;
+  font-size: 7.4rem;
   letter-spacing: 0.2rem;
+
+  max-width: 540px;
+
+  overflow: hidden;
 }
 .word::first-letter {
   text-transform: uppercase;
@@ -87,8 +91,6 @@ body {
   left: 50%;
 
   transform: translate(-50%, 50%);
-
-  padding-bottom: 0.8rem;
 
   overflow: hidden;
 
@@ -112,6 +114,9 @@ body {
 }
 .input:focus {
   outline: none;
+}
+.input:invalid {
+  border: 0.2rem solid red;
 }
 .btn {
   flex: 1 0 0;
@@ -141,7 +146,7 @@ body {
   padding: 1.2rem;
 }
 .word-container {
-  flex: 1 0 0;
+  flex: 1 0 540px;
 
   display: flex;
   flex-direction: column;

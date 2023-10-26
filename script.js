@@ -111,7 +111,7 @@ const audio = document.querySelector(".audio");
 const meaningNoun = document.querySelectorAll(".meaning")[0];
 const meaningVerb = document.querySelectorAll(".meaning")[1];
 
-let defaultString = "Dictionary";
+const regExpNum = /[0-9]/;
 
 form.addEventListener("submit", function (e) {
   e.preventDefault();
@@ -125,7 +125,7 @@ window.addEventListener("load", function () {
 function fillUpper(finalData) {
   word.innerText = finalData.word;
 
-  console.log("HERANDNOW", finalData.phonetics[0].text);
+  // console.log("HERANDNOW", finalData.phonetics[0].text);
   prunounce.innerText =
     finalData.phonetics[finalData.phonetics.length - 1].text;
 
@@ -203,6 +203,8 @@ mainBtn.addEventListener("click", function () {
 
       prunounce.innerText = `/${input.value}`;
 
+      audio.src = "nosource";
+
       let element = `<h3 class="synonym">
       No such word in dictionary
       </h3>`;
@@ -216,6 +218,12 @@ playBtn.addEventListener("click", function (e) {
 });
 
 input.addEventListener("input", function (e) {
+  //
+  if (regExpNum.test(e.target.value)) {
+    alert("Please input no numbers in dictionary input field");
+    e.target.value = "Universe";
+  }
+  //
   word.innerText =
     e.target.value.length > 0 ? e.target.value : defaultWord.word;
 });
