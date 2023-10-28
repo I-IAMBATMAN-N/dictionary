@@ -133,7 +133,7 @@ function fillUpper(finalData) {
     finalData.phonetics[finalData.phonetics.length - 1].audio || "nosource";
 }
 function fillLower(object) {
-  console.log("object", object);
+  // console.log("object", object);
   if (object !== null || object !== undefined) {
     mainSection.innerHTML = "";
     function fillPartOfSpeech(arr) {
@@ -192,14 +192,14 @@ mainBtn.addEventListener("click", function () {
     .then((data) => {
       const [finalData] = data;
 
-      console.log(finalData);
+      // console.log(finalData);
 
       fillUpper(finalData);
       fillLower(finalData);
-      console.log(fillLower(finalData));
+      // console.log(fillLower(finalData));
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
 
       prunounce.innerText = `/${input.value}`;
 
@@ -213,7 +213,7 @@ mainBtn.addEventListener("click", function () {
 });
 
 playBtn.addEventListener("click", function (e) {
-  console.log(audio.src);
+  // console.log(audio.src);
   audio.src.search("nosource") > -1 ? alert("no audio file") : audio.play();
 });
 
