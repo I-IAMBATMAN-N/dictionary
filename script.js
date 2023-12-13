@@ -194,6 +194,10 @@ window.addEventListener("load", function () {
         fillUpper(finalData);
         fillLower(finalData);
         // console.log(fillLower(finalData));
+
+        //
+        word.innerText =
+          input.value.length > 0 ? input.value : defaultWord.word;
       })
       .catch((err) => {
         // console.log(err);
@@ -220,8 +224,5 @@ window.addEventListener("load", function () {
       alert("Please input no numbers in dictionary input field");
       e.target.value = "Universe";
     }
-    //
-    word.innerText =
-      e.target.value.length > 0 ? e.target.value : defaultWord.word;
   });
 });
