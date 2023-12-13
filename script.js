@@ -113,15 +113,6 @@ const meaningVerb = document.querySelectorAll(".meaning")[1];
 
 const regExpNum = /[0-9]/;
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
-});
-
-window.addEventListener("load", function () {
-  fillUpper(defaultWord);
-  fillLower(defaultWord);
-});
-
 function fillUpper(finalData) {
   word.innerText = finalData.word;
 
@@ -184,46 +175,53 @@ function fillLower(object) {
   }
 }
 
-mainBtn.addEventListener("click", function () {
-  fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${input.value}`)
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      const [finalData] = data;
+window.addEventListener("load", function () {
+  fillUpper(defaultWord);
+  fillLower(defaultWord);
 
-      // console.log(finalData);
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-      fillUpper(finalData);
-      fillLower(finalData);
-      // console.log(fillLower(finalData));
-    })
-    .catch((err) => {
-      // console.log(err);
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${input.value}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        const [finalData] = data;
 
-      prunounce.innerText = `/${input.value}`;
+        // console.log(finalData);
 
-      audio.src = "nosource";
+        fillUpper(finalData);
+        fillLower(finalData);
+        // console.log(fillLower(finalData));
+      })
+      .catch((err) => {
+        // console.log(err);
 
-      let element = `<h3 class="synonym">
+        prunounce.innerText = `/${input.value}`;
+
+        audio.src = "nosource";
+
+        let element = `<h3 class="synonym">
       No such word in dictionary
       </h3>`;
-      mainSection.innerHTML = element;
-    });
-});
+        mainSection.innerHTML = element;
+      });
+  });
 
-playBtn.addEventListener("click", function (e) {
-  // console.log(audio.src);
-  audio.src.search("nosource") > -1 ? alert("no audio file") : audio.play();
-});
+  playBtn.addEventListener("click", function (e) {
+    // console.log(audio.src);
+    audio.src.search("nosource") > -1 ? alert("no audio file") : audio.play();
+  });
 
-input.addEventListener("input", function (e) {
-  //
-  if (regExpNum.test(e.target.value)) {
-    alert("Please input no numbers in dictionary input field");
-    e.target.value = "Universe";
-  }
-  //
-  word.innerText =
-    e.target.value.length > 0 ? e.target.value : defaultWord.word;
+  input.addEventListener("input", function (e) {
+    //
+    if (regExpNum.test(e.target.value)) {
+      alert("Please input no numbers in dictionary input field");
+      e.target.value = "Universe";
+    }
+    //
+    word.innerText =
+      e.target.value.length > 0 ? e.target.value : defaultWord.word;
+  });
 });
