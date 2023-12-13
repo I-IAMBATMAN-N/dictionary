@@ -148,6 +148,8 @@ body {
   padding: 1.2rem 0;
   padding-left: 1.2rem;
 
+  width: 100%;
+
   border: none;
 
   color: #ffff;
@@ -401,12 +403,22 @@ body {
   html {
     font-size: 40%;
   }
+  .word-container {
+    flex: 0 0 0;
+    max-width: 100%;
+  }
   .upper-container {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
 
     gap: 1.2rem;
+  }
+  .word {
+    word-break: normal;
+  }
+  .input {
+    font-size: 6.4rem;
   }
 }
 @media (max-width: 36em) {
