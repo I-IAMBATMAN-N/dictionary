@@ -82,8 +82,8 @@ window.addEventListener("load", function () {
 
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${input.value.trim().toLowerCase()}`)
       .then((response) => {
-        console.log("response", response);
-        return response.json();
+        if (response.ok) return response.json();
+        throw new Error('Network response was not ok.');
       })
       .then((data) => {
         const finalData = {...data[0], audioSample: `https://ssl.gstatic.com/dictionary/static/sounds/20200429/${input.value.trim().toLowerCase()}--_us_1.mp3`};
