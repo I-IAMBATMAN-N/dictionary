@@ -1,101 +1,4 @@
 "use strict";
-const defaultWord = {
-  word: "universe",
-  phonetic: "/ˈjuːnɪˌvɜːs/",
-  phonetics: [
-    {
-      text: "/ˈjuːnɪˌvɜːs/",
-      audio: "",
-    },
-    {
-      text: "/ˈjuːnəˌvɝs/",
-      audio:
-        "https://api.dictionaryapi.dev/media/pronunciations/en/universe-us.mp3",
-      sourceUrl: "https://commons.wikimedia.org/w/index.php?curid=1763069",
-      license: {
-        name: "BY-SA 3.0",
-        url: "https://creativecommons.org/licenses/by-sa/3.0",
-      },
-    },
-  ],
-  meanings: [
-    {
-      partOfSpeech: "proper noun",
-      definitions: [
-        {
-          definition:
-            "Our universe, the sum of everything that exists in the cosmos, including time and space itself.",
-          synonyms: [],
-          antonyms: [],
-          example:
-            "Powerful telescopes look far back into the distant reaches of the Universe.",
-        },
-      ],
-      synonyms: [],
-      antonyms: [],
-    },
-    {
-      partOfSpeech: "noun",
-      definitions: [
-        {
-          definition:
-            "The sum of everything that exists in the cosmos, including time and space itself.",
-          synonyms: [],
-          antonyms: [],
-          example:
-            "I think that the universe was created by a life force rather than a deity.",
-        },
-        {
-          definition:
-            "An entity similar to our universe; one component of a larger entity known as the multiverse.",
-          synonyms: [],
-          antonyms: [],
-        },
-        {
-          definition: "Everything under consideration.",
-          synonyms: [],
-          antonyms: [],
-          example:
-            "In all this universe of possibilities, there is only one feasible option.",
-        },
-        {
-          definition: "A sample taken from the population.",
-          synonyms: [],
-          antonyms: [],
-        },
-        {
-          definition: "An imaginary collection of worlds.",
-          synonyms: [],
-          antonyms: [],
-          example: "The universe in this comic book series is richly imagined.",
-        },
-        {
-          definition:
-            "(films) A collection of stories with characters and settings that are less interrelated than those of sequels or prequels.",
-          synonyms: [],
-          antonyms: [],
-        },
-        {
-          definition:
-            "A whole world, in the sense of perspective or social setting.",
-          synonyms: [],
-          antonyms: [],
-          example: "That didn’t just rock my world, it rocked my universe.",
-        },
-      ],
-      synonyms: [],
-      antonyms: [],
-    },
-  ],
-  license: {
-    name: "CC BY-SA 3.0",
-    url: "https://creativecommons.org/licenses/by-sa/3.0",
-  },
-  sourceUrls: [
-    "https://en.wiktionary.org/wiki/Universe",
-    "https://en.wiktionary.org/wiki/universe",
-  ],
-};
 
 const form = document.querySelector("form");
 const input = document.querySelector(".input");
@@ -114,14 +17,12 @@ const meaningVerb = document.querySelectorAll(".meaning")[1];
 const regExpNum = /[0-9]/;
 
 function fillUpper(finalData) {
+  console.log("finalData", finalData);
   word.innerText = finalData.word;
 
-  // console.log("HERANDNOW", finalData.phonetics[0].text);
-  prunounce.innerText =
-    finalData.phonetics[finalData.phonetics.length - 1].text;
-
-  audio.src =
-    finalData.phonetics[finalData.phonetics.length - 1].audio || "nosource";
+  const phoneticsObj = finalData?.phonetics?.find(i => i?.audio?.length);
+  prunounce.innerText = phoneticsObj.text || "\\";
+  audio.src = finalData.audioSample;
 }
 function fillLower(object) {
   // console.log("object", object);
@@ -176,53 +77,44 @@ function fillLower(object) {
 }
 
 window.addEventListener("load", function () {
-  fillUpper(defaultWord);
-  fillLower(defaultWord);
-
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${input.value}`)
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${input.value.trim().toLowerCase()}`)
       .then((response) => {
+        console.log("response", response);
         return response.json();
       })
       .then((data) => {
-        const [finalData] = data;
-
+        const finalData = {...data[0], audioSample: `https://ssl.gstatic.com/dictionary/static/sounds/20200429/${input.value.trim().toLowerCase()}--_us_1.mp3`};
         // console.log(finalData);
 
         fillUpper(finalData);
         fillLower(finalData);
         // console.log(fillLower(finalData));
 
-        //
         word.innerText =
           input.value.length > 0 ? input.value : defaultWord.word;
+
+        console.log("data", data);
       })
       .catch((err) => {
-        // console.log(err);
+        // console.error(err);
+        word.innerText = input.value.trim().toLowerCase();
 
-        prunounce.innerText = `/${input.value}`;
-
+        prunounce.innerText = `/`;
         audio.src = "nosource";
-
-        let element = `<h3 class="synonym">
-      No such word in dictionary
-      </h3>`;
-        mainSection.innerHTML = element;
+        mainSection.innerHTML = `<h3 class="synonym">No such word in dictionary</h3>`;
       });
   });
 
   playBtn.addEventListener("click", function (e) {
-    // console.log(audio.src);
-    audio.src.search("nosource") > -1 ? alert("no audio file") : audio.play();
+    console.log(audio.src);
+    audio.src.search("nosource") > -1 ? alert("no audio file") : audio.play().catch(error => {
+      alert("Playback failed:", error);
+      // console.error("Playback failed:", error);
+    });
   });
 
-  input.addEventListener("input", function (e) {
-    //
-    if (regExpNum.test(e.target.value)) {
-      alert("Please input no numbers in dictionary input field");
-      e.target.value = "Universe";
-    }
-  });
+  form.requestSubmit();
 });
